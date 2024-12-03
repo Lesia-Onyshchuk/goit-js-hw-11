@@ -53,7 +53,17 @@ export function fetchFoo(info) {
       gallery.insertAdjacentHTML('beforeend', markup(data.hits));
       lightbox.refresh();
     })
-    .catch(error => console.log(error))
+    .catch(error => {
+      iziToast.error({
+        title: 'Error',
+        message: `An error occurred: ${error.message}`,
+        position: 'topRight',
+        backgroundColor: '#ef4040',
+        messageColor: '#ffffff',
+        messageSize: '16px',
+        titleColor: '#ffffff',
+      });
+    })
     .finally(() => {
       hideLoader();
     });

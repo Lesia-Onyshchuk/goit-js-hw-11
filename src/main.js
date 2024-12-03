@@ -1,5 +1,8 @@
 import './css/loader.css';
 
+import iziToast from 'izitoast';
+import 'izitoast/dist/css/iziToast.min.css';
+
 import { fetchFoo } from './js/pixabay-api.js';
 
 const form = document.querySelector('.form');
@@ -13,22 +16,34 @@ export function hideLoader() {
   loader.style.display = 'none';
 }
 
-form.addEventListener('submit', event => {
-  event.preventDefault();
+if (!form.dataset.listenerAdded) {
+  form.addEventListener('submit', event => {
+    event.preventDefault();
 
-  showLoader();
+    const input = event.target.elements.search;
+    const value = input.value.trim();
 
-  const input = event.target.elements.search;
-  const value = input.value.trim();
+    if (!value) {
+      iziToast.warning({
+        title: 'Warning',
+        message: 'Please enter a search query!',
+        position: 'topRight',
+        backgroundColor: '#f39c12',
+        messageColor: '#ffffff',
+        messageSize: '16px',
+        titleColor: '#ffffff',
+      });
 
-  if (!value) {
-    gallery.innerHTML = '';
-    hideLoader();
-    return;
-  } else {
-    fetchFoo(value);
-    hideLoader();
-  }
+      gallery.innerHTML = '';
+      hideLoader();
+      return;
+    } else {
+      showLoader();
+      fetchFoo(value);
+    }
 
-  form.reset();
-});
+    form.reset();
+  });
+
+  form.dataset.listenerAdded = true;
+}
