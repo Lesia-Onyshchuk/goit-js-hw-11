@@ -23,6 +23,8 @@ if (!form.dataset.listenerAdded) {
     const input = event.target.elements.search;
     const value = input.value.trim();
 
+    showLoader();
+
     if (!value) {
       iziToast.warning({
         title: 'Warning',
