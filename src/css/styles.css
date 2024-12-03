@@ -1,4 +1,5 @@
 body {
+  box-sizing: border-box;
   background: #fff;
   padding: 36px 156px;
   width: 1440px;
@@ -23,6 +24,11 @@ img {
   display: block;
   max-width: 100%;
   height: auto;
+}
+
+h2,
+p {
+  margin: 0;
 }
 
 .form {
@@ -92,11 +98,12 @@ img {
 }
 
 .li-item {
+  box-sizing: border-box;
   display: flex;
   flex-direction: column;
   width: calc((100% - 2 * 24px) / 3);
   height: 200px;
-  border-bottom: 1px solid #808080;
+  border: 1px solid #808080;
 }
 
 .gallery-img {
@@ -108,13 +115,20 @@ img {
 
 .image-description {
   display: flex;
-  font-weight: 600;
+  font-weight: 400;
   font-size: 12px;
   line-height: 1.33;
   letter-spacing: 0.04em;
   gap: 28px;
-  padding-left: 20px;
-  padding-right: 20px;
+  padding: 4px 20px;
+  justify-content: space-between;
+  text-align: center;
+}
+
+.title {
+  font-weight: 600;
+  font-size: 12px;
+  margin-bottom: 0;
 }
 
 #loader {
